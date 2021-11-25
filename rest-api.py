@@ -7,15 +7,17 @@ app = Flask(__name__)
 @app.route('/checkstring',  methods=['GET', 'POST'])
 def checkString():
     string = request.args.get('string')
-    responseType = request.args.get('responseType')
-    #print(string, responseType)
-    
-    #print("send req to API 2")
-    link = 'http://127.0.0.1:5000/checkstring?string='+string
-    result = requests.post(link)
-    data = result.json()
-    #print(data)
+    returnType = request.args.get('returnType')
+    downloadType = request.args.get('downloadType')
+    print(string, returnType, downloadType)
 
+    
+   
+    link = 'http://127.0.0.1:8000/checkstring?string='+string+'&responseType='+returnType
+    result = requests.post(link)
+    data = result.text
+    
+    return "OK"
     returnData=""
     
     if responseType=="txt":
@@ -44,4 +46,4 @@ def checkString():
 
     return returnData
 
-app.run(host="localhost", port=8000, debug=False)
+app.run(host="localhost", port=8001, debug=False)
