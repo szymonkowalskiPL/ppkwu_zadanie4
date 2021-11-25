@@ -48,8 +48,13 @@ response
 1;5;0;0
 ```
 > Any combination is possible 
-> txt return is download in txt, json, xml and csv
-> etc
+| return type | download type |
+| ------ | ------ |
+| txt | txt, json, csv, xml |
+| json | txt, json, csv, xml |
+| xml | txt, json, csv, xml |
+| csv | txt, json, csv, xml |
+
 
 
 **2. /convertstring (POST)**
