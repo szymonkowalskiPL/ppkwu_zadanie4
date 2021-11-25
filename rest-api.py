@@ -17,16 +17,16 @@ def checkString():
     result = requests.post(link)
     data = result.text
     
-    return "OK"
+    
     returnData=""
     
-    if responseType=="txt":
+    if returnType=="txt":
          #print("txt reponse")
          returnData="Lowercase: "+str(data["lower_case"])+"\n"+"Uppercase: "+str(data["upper_case"])+"\n"+"Numbers: "+str(data["numbers"])+"\n"+"Special: "+str(data["special_characters"])
-    elif responseType=="json":
+    elif returnType=="json":
         #print("json reponse")
         returnData=data
-    elif responseType=="xml":
+    elif returnType=="xml":
         #print("xml response")
         returnData = "<string-result id=\"" + string + "\">"
         returnData += "\t<param class=\"upper_case\">" + str(data["upper_case"]) + "</param>"
@@ -34,7 +34,7 @@ def checkString():
         returnData += "\t<param class=\"numbers\">" + str(data["numbers"]) + "</param>"
         returnData += "\t<param class=\"special_chars\">" + str(data["special_characters"]) + "</param>"
         returnData += "</string-result>"
-    elif responseType=="csv":
+    elif returnType=="csv":
         returnData += str(data["upper_case"])
         returnData += ";"
         returnData += str(data["lower_case"])
