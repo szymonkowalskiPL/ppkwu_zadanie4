@@ -47,7 +47,9 @@ response
 ```
 1;5;0;0
 ```
-
+> Any combination is possible 
+> txt return is download in txt, json, xml and csv
+> etc
 
 
 **2. /convertstring (POST)**
