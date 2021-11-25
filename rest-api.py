@@ -28,47 +28,44 @@ def checkString():
             baseDict[values[0]]= values[1]
     elif returnType=="json":
         d=json.loads(data)
-        baseDict["lower_case"]= d["lower_case"]
-        baseDict["numbers"]= d["numbers"]
-        baseDict["upper_case"]= d["upper_case"]
-        baseDict["special_characters"]= d["special_characters"]
+        baseDict["Lowercase"]= d["lower_case"]
+        baseDict["Numbers"]= d["numbers"]
+        baseDict["Uppercase"]= d["upper_case"]
+        baseDict["Special"]= d["special_characters"]
     elif returnType=="csv":
         d=data.split(';')
-        baseDict["upper_case"]= d[0]
-        baseDict["lower_case"]= d[1]
-        baseDict["numbers"]= d[2]
-        baseDict["special_characters"]= d[3]
+        baseDict["Uppercase"]= d[0]
+        baseDict["Lowercase"]= d[1]
+        baseDict["Numbers"]= d[2]
+        baseDict["Special"]= d[3]
     elif returnType=="xml":
         d = re.findall(r'\d+', data) 
-        baseDict["upper_case"]= d[0]
-        baseDict["lower_case"]= d[1]
-        baseDict["numbers"]= d[2]
-        baseDict["special_characters"]= d[3]
-      
+        baseDict["Uppercase"]= d[0]
+        baseDict["Lowercase"]= d[1]
+        baseDict["Numbers"]= d[2]
+        baseDict["Special"]= d[3]
+    
     returnData=""
     
-    if returnType=="txt":
-         #print("txt reponse")
-         returnData="Lowercase: "+str(data["lower_case"])+"\n"+"Uppercase: "+str(data["upper_case"])+"\n"+"Numbers: "+str(data["numbers"])+"\n"+"Special: "+str(data["special_characters"])
-    elif returnType=="json":
-        #print("json reponse")
-        returnData=data
-    elif returnType=="xml":
-        #print("xml response")
+    if downloadType=="txt":
+         returnData="Lowercase: "+str(baseDict["Lowercase"])+"\n"+"Uppercase: "+str(baseDict["Uppercase"])+"\n"+"Numbers: "+str(baseDict["Numbers"])+"\n"+"Special: "+str(baseDict["Special"])
+    elif downloadType=="json":
+        returnData=json.dumps(baseDict)
+    elif downloadType=="xml":
         returnData = "<string-result id=\"" + string + "\">"
-        returnData += "\t<param class=\"upper_case\">" + str(data["upper_case"]) + "</param>"
-        returnData += "\t<param class=\"lower_case\">" + str(data["lower_case"]) + "</param>"
-        returnData += "\t<param class=\"numbers\">" + str(data["numbers"]) + "</param>"
-        returnData += "\t<param class=\"special_chars\">" + str(data["special_characters"]) + "</param>"
+        returnData += "\t<param class=\"upper_case\">" + str(baseDict["Uppercase"]) + "</param>"
+        returnData += "\t<param class=\"lower_case\">" + str(baseDict["Lowercase"]) + "</param>"
+        returnData += "\t<param class=\"numbers\">" + str(baseDict["Numbers"]) + "</param>"
+        returnData += "\t<param class=\"special_chars\">" + str(baseDict["Special"]) + "</param>"
         returnData += "</string-result>"
-    elif returnType=="csv":
-        returnData += str(data["upper_case"])
+    elif downloadType=="csv":
+        returnData += str(baseDict["Uppercase"])
         returnData += ";"
-        returnData += str(data["lower_case"])
+        returnData += str(baseDict["Lowercase"])
         returnData += ";"
-        returnData += str(data["numbers"])
+        returnData += str(baseDict["Numbers"])
         returnData += ";"
-        returnData += str(data["special_characters"])
+        returnData += str(baseDict["Special"])
 
 
     return returnData
