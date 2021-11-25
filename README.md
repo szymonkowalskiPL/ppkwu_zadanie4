@@ -47,7 +47,8 @@ response
 ```
 1;5;0;0
 ```
-> Any combination is possible 
+Any combination is possible 
+
 | return type | download type |
 | ------ | ------ |
 | txt | txt, json, csv, xml |
