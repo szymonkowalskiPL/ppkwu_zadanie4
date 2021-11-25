@@ -11,7 +11,8 @@ Api to count chars in given string using external API and convert types of respo
 
 ## Endpoints:
 
-**1. /checkstring (POST)**
+## Plugins
+## **1. /checkstring (POST)**
 	
 Endpoint accepts 3 arguments and return response in one of file formats 
 
