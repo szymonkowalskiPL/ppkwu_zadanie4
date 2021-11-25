@@ -1,22 +1,45 @@
-String API 3
-Api to count chars in srting using external API and save result in one of three types of fies (json, csv, xml or response as simple text).
+# PPKWU zadanie 3
+## API string
 
-required packages:
-1. Flask (pip install flask)
-2. requests (pip install requests)
+Api to count chars in given string using external API and get result in one of three types of files formats (json, csv, xml or simple text).
 
-Endpoints:
+## Required packages:
+1. Flask (```pip install flask```)
+2. requests (``` pip install requests ```)
 
-1. /checkstring (POST)
+## Endpoints:
+
+**1. /checkstring (POST)**
 	
-	Endpoint accepts string and return or save response in file 
+Endpoint accepts 2 arguments and return response in one of file formats 
 
-	Arguments: 
-		1. "string" (type: string)
-		2. "responseType" (type: int)
-	
-	Example of usage
+## Arguments: 
+1. "string" (type: string)
+2. "responseType" (type: string)
+## Response types:
+1. "txt"
+2. "json"
+3. "xml"
+4. "csv" (delimiter ;)
 
-	request -> http://127.0.0.1:5001/checkstring?string=Szymon&responseType=1
-	
-	response -> "upper_case: 1, lower_case: 5, numbers: 0, special_characters: 0}
+## Example of usage
+**txt**
+
+	http://127.0.0.1:5001/checkstring?string=Szymon&responseType=txt
+
+response 
+```
+Upper case: 1
+Lower case: 5
+Numbers: 0
+Special characters: 0
+```
+
+**csv**
+
+	http://127.0.0.1:5001/checkstring?string=Szymon&responseType=csv
+
+response 
+```
+1;5;0;0
+```
