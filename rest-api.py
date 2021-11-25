@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import re
 import requests
+import json
 
 app = Flask(__name__)
 
@@ -16,8 +17,31 @@ def checkString():
     link = 'http://127.0.0.1:8000/checkstring?string='+string+'&responseType='+returnType
     result = requests.post(link)
     data = result.text
-    
-    
+
+    baseDict={}
+    if returnType=="txt":
+        d=data.replace(':', '')
+        d = d.split("\n")
+        print(d)
+        for p in d:
+            values = p.split(' ')
+            baseDict[values[0]]= values[1]
+    elif returnType=="json":
+        d=json.loads(data)
+        baseDict["lower_case"]= d["lower_case"]
+        baseDict["numbers"]= d["numbers"]
+        baseDict["upper_case"]= d["upper_case"]
+        baseDict["special_characters"]= d["special_characters"]
+    elif returnType=="csv":
+        d=data.split(';')
+        baseDict["upper_case"]= d[0]
+        baseDict["lower_case"]= d[1]
+        baseDict["numbers"]= d[2]
+        baseDict["special_characters"]= d[3]
+    elif returnType=="xml":
+        print(data)
+    print(baseDict)
+    return "OK";  
     returnData=""
     
     if returnType=="txt":
