@@ -39,9 +39,12 @@ def checkString():
         baseDict["numbers"]= d[2]
         baseDict["special_characters"]= d[3]
     elif returnType=="xml":
-        print(data)
-    print(baseDict)
-    return "OK";  
+        d = re.findall(r'\d+', data) 
+        baseDict["upper_case"]= d[0]
+        baseDict["lower_case"]= d[1]
+        baseDict["numbers"]= d[2]
+        baseDict["special_characters"]= d[3]
+      
     returnData=""
     
     if returnType=="txt":
